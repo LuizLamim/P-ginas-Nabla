@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link na Bio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    :root {
+    --bg-color: #0d0d0d; /* Preto profundo */
+    --gold: #D4AF37;     /* Dourado sofisticado */
+    --text-color: #f5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    padding: 3px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--gold);
+    letter-spacing: 1px;
+}
+
+.bio {
+    font-size: 0.9rem;
+    margin-bottom: 35px;
+    color: #a0a0a0;
+    font-weight: 400;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.link-btn {
+    display: block;
+    background-color: transparent;
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 16px 20px;
+    border: 1px solid var(--gold);
+    border-radius: 8px; /* Cantos levemente arredondados para um tom mais sério */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    
+    /* Estado inicial para a animação do JS */
+    opacity: 0; 
+    transform: translateY(20px); 
+}
+
+/* Efeito de preenchimento dourado ao passar o mouse */
+.link-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: var(--gold);
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.link-btn:hover::before {
+    width: 100%;
+}
+
+.link-btn:hover {
+    color: var(--bg-color); /* O texto fica preto quando o fundo fica dourado */
+    font-weight: 600;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Classe adicionada pelo JS para exibir os botões */
+.link-btn.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo específico para o primeiro botão (Pós-graduação) */
+.links .link-btn:first-child {
+    background-color: var(--gold);
+    color: var(--bg-color);
+    font-weight: 600;
+}
+
+.links .link-btn:first-child::before {
+    background-color: var(--text-color);
+}
+
+.links .link-btn:first-child:hover {
+    color: var(--bg-color);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.5);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.icon {
+    color: var(--text-color);
+    font-size: 2.2rem;
+    transition: all 0.3s ease;
+}
+
+.icon:hover {
+    color: var(--gold);
+    transform: translateY(-5px) scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+}
+
+/* Animação de pulso */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 15px 5px rgba(212, 175, 55, 0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
+}
+</style>
+</head>
